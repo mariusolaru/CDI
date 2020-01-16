@@ -7,6 +7,6 @@
         bean-discovery-mode="all">
     <interceptors>
         <class>interceptors.ValidPeriodInterceptor</class>
-        <class>interceptors.AuthenticatedInterceptor</class>
+        <!--<class>interceptors.AuthenticatedInterceptor</class>-->
     </interceptors>
 </beans>

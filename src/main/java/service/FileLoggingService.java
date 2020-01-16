@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.Date;
 
@@ -25,7 +26,7 @@ public class FileLoggingService implements Serializable {
 
     public void onUploadDocument(@Observes Document document){
         try{
-            Files.write(pathLogFile, Collections.singleton("New document added: " + document.getName() + " at " + new Date() + "\n"));
+            Files.write(pathLogFile, Collections.singleton("New document added: " + document.getName() + " at " + new Date() + "\n"), StandardOpenOption.APPEND);
         } catch (IOException e){
             e.printStackTrace();
         }

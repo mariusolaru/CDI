@@ -1,8 +1,13 @@
 package util;
 
+import dto.DocumentDTO;
 import entity.Admin;
+import entity.Document;
 import entity.Guest;
 import entity.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityConverter {
 
@@ -22,5 +27,22 @@ public class EntityConverter {
         admin.setPassword(user.getPassword());
 
         return admin;
+    }
+
+    public static List<DocumentDTO> toDocumentDTOList(List<Document> documents){
+        List<DocumentDTO> documentDTOS = new ArrayList<>();
+
+        for(Document document : documents){
+            DocumentDTO documentDTO = new DocumentDTO();
+
+            documentDTO.setId(document.getId());
+            documentDTO.setRegistrationNumber(document.getRegistrationNumber());
+            documentDTO.setName(document.getName());
+            documentDTO.setUserId(document.getUser().getId());
+
+            documentDTOS.add(documentDTO);
+        }
+
+        return documentDTOS;
     }
 }

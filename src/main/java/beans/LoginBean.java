@@ -6,7 +6,9 @@ import interceptors.ValidPeriod;
 import repository.UserRepository;
 import service.AuthenticationService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -20,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 import static util.EntityConverter.toGuest;
 
 @Named
-@RequestScoped
+@ApplicationScoped
 public class LoginBean implements Serializable {
 
     private User user = new User();

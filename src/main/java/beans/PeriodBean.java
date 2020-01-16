@@ -9,6 +9,8 @@ import repository.UserRepository;
 import service.AuthenticationService;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,13 +21,11 @@ import static util.EntityConverter.toAdmin;
 
 @Named
 @RequestScoped
+@DeclareRoles({"admin", "guest"})
 public class PeriodBean implements Serializable {
 
     @EJB
     private PeriodRepository periodRepository;
-
-    @EJB
-    private UserRepository userRepository;
 
     @EJB
     private AdminRepository adminRepository;
@@ -48,6 +48,7 @@ public class PeriodBean implements Serializable {
         this.periodDTO = periodDTO;
     }
 
+    @RolesAllowed("admin")
     public String addPeriod(){
         Period period = new Period();
 
